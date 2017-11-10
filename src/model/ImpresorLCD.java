@@ -6,14 +6,29 @@ import java.util.List;
 
 public class ImpresorLCD {
 
+    /**
+     * Caracter vertical
+     */
     static final char CARACTER_VERTICAL = '|';
+        /**
+     * Caracter horizontal
+     */
     static final char CARACTER_HORIZONTAL = '-';
-    static final String POSICION_X = "X";
-    static final String POSICION_Y = "Y";
-    
+
+        /**
+     * Hash que mapea las lineas horizontales que tiene cada numero
+     */
     private HashMap<Character,boolean[]> number_x;
+    /**
+     * Hash que mapea las lineas verticales que tiene cada numero
+     */
     private HashMap<Character,boolean[]> number_y;
     
+    /**
+     * Constructor de la clase, pone en los mapas las lineas de  cada caracter
+     * Existen tres lineas horizontales
+     * Existen 4 lineas verticales, son identificados de izquierda a derecha y de arriba abajo. 
+     */
     public ImpresorLCD() {
        number_x= new HashMap<Character,boolean[]>();
        boolean[] uno_x={false,false,false};
@@ -62,27 +77,42 @@ public class ImpresorLCD {
        
     }
 
-
+    /**
+     * Pone en la matriz un caracter
+     * @param matriz LA matriz que se va a modificar
+     * @param fila La fila de la posicion a modificar
+     * @param columna La columna de la poisicion a modificar
+     * @param caracter El caracter a cambiar
+     */
     private void poner_caracter(char [][] matriz,int fila, int columna, char caracter)
     {
         matriz[fila][columna]=caracter;
     }
-
+    /**
+     * Adiciona de cero a tres lineas hoizontales en la matriz
+     * @param matriz La matriz a modificar
+     * @param pos_incial La columna inicial de las lineas
+     * @param size Tamanio de la linea
+     * @param lines Vector de lineas a crear
+     */
     private void adicionarLineaEnX(char [][] matriz,int pos_incial,int size,boolean[] lines)
     {
         for (int i = 0; i < size; i++) {
             int columna=pos_incial+i+1;
             int fila;
+            //Linea superior
             if (lines[0])
                 {
                     fila=0;
                     poner_caracter(matriz,fila,columna,CARACTER_HORIZONTAL);
                 }
+            //Linea del medio
             if (lines[1])
                 {
                     fila=1+size;
                     poner_caracter(matriz,fila,columna,CARACTER_HORIZONTAL);
                 }
+            //Linea inferior
             if (lines[2])
                 {
                     fila=sizeFilas(size)-1;
@@ -93,24 +123,34 @@ public class ImpresorLCD {
         
     }
     
+    /**
+     * Adiciona de cero a cuatro lineas verticales en la matriz
+     * @param matriz La matriz a modifica
+     * @param pos_incial La columna inicial de las lineas
+     * @param size El tamanio de las lineas
+     * @param lines Vector de las lineas a crear
+     */
     private void adicionarLineaEnY(char [][] matriz,int pos_incial ,int size,boolean[] lines)
     {
         
         for (int i = 0; i < size; i++) {
             int fila;
             int columna;
+            //Linea superior izquierda
             if(lines[0])
                 {
                     columna=pos_incial;
                     fila=i+1;
                     poner_caracter(matriz,fila,columna,CARACTER_VERTICAL);
                 }
+            //Linea superior derecha
             if(lines[1])
                 {
                     columna=pos_incial+sizeColumnas(size)-1;
                     fila=i+1;
                     poner_caracter(matriz,fila,columna,CARACTER_VERTICAL);
                 }
+            //Linea inferior izquierda
             if(lines[2])
                 {
                     columna=pos_incial;
@@ -118,6 +158,7 @@ public class ImpresorLCD {
                     poner_caracter(matriz,fila,columna,CARACTER_VERTICAL);
 
                 }
+            //Linea inferior derecha
             if(lines[3])
                 {
                     columna=pos_incial+sizeColumnas(size)-1;
@@ -128,6 +169,14 @@ public class ImpresorLCD {
         
     }
 
+    /**
+     * Adiciona un digito a la matriz
+     * @param numero El numero a adicionar
+     * @param matriz La matriz a modificar
+     * @param pos_inicial La columna inicial del digito
+     * @param size El tamanio de las lineas del digito
+     * @return 
+     */
     private int adicionarDigito(char numero,char [][] matriz,int pos_inicial,int size) {
         
         boolean[] segments_x=number_x.get(numero);
@@ -139,6 +188,11 @@ public class ImpresorLCD {
         return sizeColumnas(size);
     }
 
+    /**
+     * Convierte una matriz de caracteres en el resultado a mostrar
+     * @param matriz La matriz a convertir
+     * @return Un String con las columnas de la matriz y saltos de linea cada vez que empieza una nueva fila
+     */
     private String parse_matriz(char[][] matriz)
     {
         String rta="";
@@ -180,6 +234,13 @@ public class ImpresorLCD {
         return parse_matriz(matriz);
     }
     
+    /**
+     * Inicializa con espacios una matriz
+     * @param filas EL numero de filsa de la matriz
+     * @param columnas El numero de columnas de la matriz
+     * @return  Una matriz de caracteres con el numero de filas y columnas dadas ppr
+     * parametro
+     */
     private char[][] init_matriz(int filas, int columnas)
     {
          char[][] matriz= new char[filas][columnas];

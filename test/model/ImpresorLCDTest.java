@@ -24,29 +24,20 @@ import static org.junit.Assert.*;
 public class ImpresorLCDTest {
             ImpresorLCD instance;
 
-    
-    public ImpresorLCDTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
+
+   
+    /**
+     * Reinciar la instancia de mundo antes de cada test
+     */
     @Before
     public void setUp() {
         instance = new ImpresorLCD();
     }
     
-    @After
-    public void tearDown() {
-    }
+
 
     /**
-     * Test of sizeColumnas method, of class ImpresorLCD.
+     * Prueba que el numero de columnas de un digito sea correcto
      */
     @Test
     public void testSizeColumnas() {
@@ -54,7 +45,7 @@ public class ImpresorLCDTest {
         int size = 0;
         int expResult = 0;
         int result = 0;
-        for (int i = 0; i < 100; i++) {
+        for (int i = 1; i <= 10; i++) {
             size=i;
             result = instance.sizeColumnas(size);
             expResult=size+2;
@@ -64,7 +55,7 @@ public class ImpresorLCDTest {
     }
 
     /**
-     * Test of sizeFilas method, of class ImpresorLCD.
+     * Prueba que el numero de filas de un digito sea correcto
      */
     @Test
     public void testSizeFilas() {
@@ -73,7 +64,7 @@ public class ImpresorLCDTest {
         int expResult = 0;
         int result = 0;
         
-        for (int i = 0; i < 100; i++) {
+        for (int i = 1; i <= 10; i++) {
             size=i;
             result = instance.sizeFilas(size);
             expResult=2*size+3;
@@ -84,7 +75,9 @@ public class ImpresorLCDTest {
     }
 
     /**
-     * Test of procesar method, of class ImpresorLCD.
+     * Usa datos provenientes de https://www.udebug.com/UVa/706 para asegurar
+     * que el procesamiento para los distintos tamanios se correcto
+     * TAmbien comprueba que comandos incorrectos sean ignorados
      */
     @Test
     public void testProcesar() {
@@ -126,7 +119,7 @@ public class ImpresorLCDTest {
     }
 
     /**
-     * Test of isNumeric method, of class ImpresorLCD.
+     * TComprueba que los numeros sean correctamente identificados
      */
     @Test
     public void testIsNumeric() {
@@ -145,6 +138,11 @@ public class ImpresorLCDTest {
        
     }
     
+    /**
+     * Metdo auxiliar para acomular todas las lineas de un texto en un string
+     * @param fileName El archivo donde esta el texto
+     * @return UN string con todas las lineas del texto
+     */
     private String read_file(String fileName)
     {
         String rta="";
