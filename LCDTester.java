@@ -1,4 +1,3 @@
-package controller;
 import model.ImpresorLCD;
 import java.util.ArrayList;
 import java.util.Iterator;
