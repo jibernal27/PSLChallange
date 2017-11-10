@@ -1,9 +1,12 @@
-package controller;
-import model.ImpresorLCD;
+package src.controller;
+
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
+
+import src.model.ImpresorLCD;
 public class LCDTester {
 
     static final String CADENA_FINAL = "0,0";

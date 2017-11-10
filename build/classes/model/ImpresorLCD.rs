@@ -1,2 +1,0 @@
-ImpresorLCD
-ImpresorLCD$1

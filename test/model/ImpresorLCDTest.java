@@ -1,31 +1,21 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package model;
-
+package test.model;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import org.junit.After;
-import org.junit.AfterClass;
+
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
-/**
- *
- * @author jairo
- */
-public class ImpresorLCDTest {
-            ImpresorLCD instance;
+import junit.framework.TestCase;
+import src.model.ImpresorLCD;
+
+public class ImpresorLCDTest extends TestCase {
+	private ImpresorLCD instance;
 
 
-   
+	   
     /**
      * Reinciar la instancia de mundo antes de cada test
      */
@@ -93,7 +83,7 @@ public class ImpresorLCDTest {
         
         for (int i = 1; i <= 10; i++) {
             result = instance.procesar(i+",1234567890", espacioDig);
-            assertNotEquals(read_file("data/test11.txt"), result);
+            assertNotSame(read_file("data/test11.txt"), result);
         }
         
         try {
