@@ -1,9 +1,9 @@
+package controller;
+import model.ImpresorLCD;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
-import javax.swing.JOptionPane;
-
 public class LCDTester {
 
     static final String CADENA_FINAL = "0,0";

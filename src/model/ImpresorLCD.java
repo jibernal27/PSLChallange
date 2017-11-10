@@ -1,3 +1,4 @@
+package model;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -165,7 +166,7 @@ public class ImpresorLCD {
         int len_numeros=numeroImp.length();
         int columnas=sizeColumnas(size)*len_numeros+espacio*(len_numeros-1);
         int filas=sizeFilas(size);
-        System.out.println(columnas+" "+filas);
+       
         char[][] matriz =init_matriz( filas,  columnas);
         
         char[] numeros = numeroImp.toCharArray();
@@ -279,7 +280,7 @@ public class ImpresorLCD {
      *
      * @param cadena Cadena
      */  
-    static boolean isNumeric(String cadena) {
+    public static boolean isNumeric(String cadena) {
         try {
             Integer.parseInt(cadena);
             return true;
